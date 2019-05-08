@@ -9,7 +9,8 @@ import { Observable } from 'rxjs';
 export class PostsService {
   constructor(private http: HttpClient) {}
 
-  search(search): Observable<any[]> {
-    return this.http.get<any[]>(`http://localhost:3000/posts?q=${search}`);
+  search(url, search): Observable<any[]> {
+    //return this.http.get<any[]>(`http://localhost:3000/posts?q=${search}`);
+    return this.http.get<any[]>(`${url}?q=${search}`);
   }
 }

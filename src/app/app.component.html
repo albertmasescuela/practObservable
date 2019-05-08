@@ -9,7 +9,12 @@
 </div>
 <div class="container">
   <h3>name:</h3>
-  <app-autoComplate></app-autoComplate>
+  <app-autoComplate
+    [url]="'http://localhost:3000/posts'"
+    [favoriteData]="statesComplex2"
+    field="title"
+    placeholder="Escriu o ..."
+  ></app-autoComplate>
 </div>
 
 <router-outlet></router-outlet>

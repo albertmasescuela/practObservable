@@ -6,10 +6,10 @@
   [typeahead]="dataSource$"
   (typeaheadLoading)="changeTypeaheadLoading($event)"
   (typeaheadOnSelect)="typeaheadOnSelect($event)"
-  [typeaheadOptionsLimit]="7"
-  typeaheadOptionField="title"
+  [typeaheadOptionsLimit]="10"
+  [typeaheadOptionField]="field"
   [typeaheadScrollable]="true"
-  placeholder="Locations loaded with timeout"
+  [placeholder]="placeholder"
   class="form-control"
 />
 <div *ngIf="typeaheadLoading">Loading</div>
