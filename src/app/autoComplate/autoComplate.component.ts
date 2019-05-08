@@ -13,7 +13,9 @@ import {
   map,
   tap,
   mergeAll,
-  pairwise
+  pairwise,
+  filter,
+  distinctUntilChanged
 } from 'rxjs/operators';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { PostsService } from '../services/posts.service';
@@ -47,7 +49,12 @@ export class AutoComplateComponent implements OnInit {
     this.dataSource$ = Observable.create((observer: any) => {
       // Runs on every search
       observer.next(this.asyncSelected);
-    }).pipe(mergeMap((token: string) => this.getStatesAsObservable2(token)));
+    }).pipe(
+      debounceTime(400),
+      filter((query: string) => query.length > 2),
+      distinctUntilChanged(),
+      mergeMap((token: string) => this.getStatesAsObservable2(token))
+    );
   }
 
   getStatesAsObservable2(token: string): Observable<any> {
