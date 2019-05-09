@@ -15,7 +15,8 @@ import {
   mergeAll,
   pairwise,
   filter,
-  distinctUntilChanged
+  distinctUntilChanged,
+  switchMap
 } from 'rxjs/operators';
 import { TypeaheadMatch } from 'ngx-bootstrap/typeahead';
 import { PostsService } from '../services/posts.service';
@@ -53,7 +54,7 @@ export class AutoComplateComponent implements OnInit {
       debounceTime(400),
       filter((query: string) => query.length > 2),
       distinctUntilChanged(),
-      mergeMap((token: string) => this.getStatesAsObservable2(token))
+      switchMap((token: string) => this.getStatesAsObservable2(token))
     );
   }
 
@@ -67,11 +68,32 @@ export class AutoComplateComponent implements OnInit {
       .search(this.url, token)
       .pipe(debounceTime(300));
 
+    // const observable3$: Observable<any[]> = this.service
+    //   .search(this.url, token.substr(0, 2))
+    //   .pipe(debounceTime(300));
+
     return combineLatest(observable1$, observable2$).pipe(
       tap(console.log),
       map(([result1, result2]) => result1.concat(result2)),
       tap(console.log)
     );
+  }
+
+  getStatesAsObservable3(token: string): Observable<any> {
+    const query = new RegExp(token, 'i');
+
+    const observable1$ = of(this.favoriteData).pipe(
+      tap(ele => console.log(`elements 1:${ele}`))
+    );
+    const observable2$: Observable<any[]> = this.service
+      .search(this.url, token)
+      .pipe(debounceTime(300));
+
+    const observable3$: Observable<any[]> = this.service
+      .search(this.url, token.substr(0, 2))
+      .pipe(debounceTime(300));
+
+    return concat(observable1$, observable2$, observable3$);
   }
 
   changeTypeaheadLoading(e: boolean): void {
