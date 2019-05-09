@@ -12,6 +12,7 @@ export class AppComponent {
     {
       id: 12,
       date: '2018-10-24T21:25:21+0000',
+      region: 'Favorit',
       title: 'Ciclistas de pelo en pecho',
       slug: 'ciclos-de-vida-en-angular-la-guia-definitiva',
       path: '2018/10/ciclos-de-vida-en-angular-la-guia-definitiva.html',
@@ -23,6 +24,7 @@ export class AppComponent {
     {
       id: 13,
       date: '2018-10-24T21:25:21+0000',
+      region: 'Favorit',
       title: 'Trabajadores del metro',
       slug: 'ciclos-de-vida-en-angular-la-guia-definitiva',
       path: '2018/10/ciclos-de-vida-en-angular-la-guia-definitiva.html',
@@ -34,6 +36,7 @@ export class AppComponent {
     {
       id: 14,
       date: '2018-10-24T21:25:21+0000',
+      region: 'Favorit',
       title: 'CCOO y UGT tienen delito por la falta',
       slug: 'ciclos-de-vida-en-angular-la-guia-definitiva',
       path: '2018/10/ciclos-de-vida-en-angular-la-guia-definitiva.html',

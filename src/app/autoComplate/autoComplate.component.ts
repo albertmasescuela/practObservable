@@ -73,7 +73,6 @@ export class AutoComplateComponent implements OnInit {
     //   .pipe(debounceTime(300));
 
     return combineLatest(observable1$, observable2$).pipe(
-      tap(console.log),
       map(([result1, result2]) => result1.concat(result2)),
       tap(console.log)
     );
